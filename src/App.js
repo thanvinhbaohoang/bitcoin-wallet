@@ -1,15 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import Wallet from './components/Wallet';
-import {Helmet} from "react-helmet";
 
 function App() {
   return (
     <div className="App">
-      <Helmet>
-          <script src="bitcore/packages/bitcore-lib/bitcore-lib.js" 
-          type="text/javascript" />
-      </Helmet>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
