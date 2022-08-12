@@ -1,42 +1,68 @@
 import React from "react";
 import { Component } from "react";
-
-var bitcore = require('bitcore-lib');
+const bitcore = require('bitcore-lib');
 
 class Wallet extends Component{
     constructor(props){
         super(props);
-        this.wallet =''
-        
-    }
-    generateMnemonic(){
-        var Mnemonic = require('bitcore-mnemonic');
-        var code = new Mnemonic(Mnemonic.Words.ENGLISH);
-        console.log("=========== MNEMONIC =============")
-        code.toString(); //12 words mnemonic phrases
-        console.log(code)
+        this.state = {};
 
-        console.log("=========== XPRIV Key =============")
-        var xpriv = code.toHDPrivateKey();
-        console.log(xpriv);
-        return "GenerateMnemonic() Called"
-    }
-    generateWallet(){
-        console.log("BITCORE LIB")
-        console.log(bitcore);
+        // Binding this keyword 
+        this.generateNewWallet = this.generateNewWallet.bind(this) 
 
-        console.log("PRIVATEKEY")
-        var value = Buffer.from('correct horse battery staple');
+    }
+
+    generateNewWallet(){ 
+        // Generate Mnemonic Phrase
+        const Mnemonic = require('bitcore-mnemonic');
+        const code = new Mnemonic(Mnemonic.Words.ENGLISH);
+        const newMnemonicPhrase = code.toString(); //12 words mnemonic phrases
+        var newXpriv = code.toHDPrivateKey();
+
+        // Generate Address
+        var value = Buffer.from(newMnemonicPhrase);
         var hash = bitcore.crypto.Hash.sha256(value);
         var bn = bitcore.crypto.BN.fromBuffer(hash);
-        console.log(bn);
-
-        console.log("ADDRESS")
+        var privateKey = new bitcore.PrivateKey(bn);
         var address = new bitcore.PrivateKey(bn).toAddress();
-        console.log(address)   
+        address = address.toString()
 
-        return 'generateWallet() Called' 
+        // Update State
+        this.setState({
+            mnemonicPhrase : newMnemonicPhrase,
+            xpriv: newXpriv.toString(),
+            privateKey: privateKey.toString(),
+            walletAddress: address.toString(),
+        })
+
+        return;
+
     }
+
+    renderMnemonicPhrase(){
+        return (
+           <div>
+                <h1>Your Wallet Info</h1>
+                <p>
+                    Mnemonic: <br/>{this.state.mnemonicPhrase}
+                </p>
+
+                <p>
+                    XPriv: <br/>{this.state.xpriv}
+                </p> 
+
+                <p>
+                    PrivateKey: <br/>{this.state.privateKey}
+                </p>
+
+                <p>
+                    Address: <br/> {this.state.walletAddress}
+                </p>
+           </div>
+            )
+    }
+
+ 
 
     createTransaction() {
         var privateKey = new bitcore.PrivateKey('L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy');
@@ -59,8 +85,12 @@ class Wallet extends Component{
     render() {
         return(
             <div>
-                <div> Generated Mnemonic {this.generateMnemonic()}</div>
-                <div>Your address is {this.generateWallet()}</div>
+                {/* <div> <h3>Generated Mnemonic: </h3> <br/> {this.generateNewWallet()}</div> */}
+                <button class='generate-mnemonic-button' onClick={this.generateNewWallet}>
+                    <p>Click to New Wallet</p>
+                </button>
+
+                {this.renderMnemonicPhrase()}
             </div>
            
         )
