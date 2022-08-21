@@ -87,19 +87,27 @@ class Wallet extends Component{
     }
 
     createTransaction(){
-        // var privateKey = new bitcore.PrivateKey('L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy');
-        // var utxo = {
-        //   "txId" : "115e8f72f39fad874cfab0deed11a80f24f967a84079fb56ddf53ea02e308986",
-        //   "outputIndex" : 0,
-        //   "address" : "17XBj6iFEsf8kzDMGQk5ghZipxX49VXuaV",
-        //   "script" : "76a91447862fe165e6121af80d5dde1ecb478ed170565b88ac",
-        //   "satoshis" : 50000
-        // };
-        
-        // var transaction = new bitcore.Transaction()
-        //   .from(utxo)
-        //   .to('1Gokm82v6DmtwKEB8AiVhm82hyFSsEvBDK', 15000)
-        //   .sign(privateKey);  
+
+        // var utxo = new bitcore.Transaction.UnspentOutput({
+        //     "txid" : "a0a08e397203df68392ee95b3f08b0b3b3e2401410a38d46ae0874f74846f2e9",
+        //     "vout" : 0,
+        //     "address" : "mgJT8iegL4f9NCgQFeFyfvnSw1Yj4M5Woi",
+        //     "scriptPubKey" : "76a914089acaba6af8b2b4fb4bed3b747ab1e4e60b496588ac",
+        //     "amount" : 0.00070000
+        //   });
+        //   var utxo = new UnspentOutput({
+        //     "txId" : "a0a08e397203df68392ee95b3f08b0b3b3e2401410a38d46ae0874f74846f2e9",
+        //     "outputIndex" : 0,
+        //     "address" : "mgJT8iegL4f9NCgQFeFyfvnSw1Yj4M5Woi",
+        //     "script" : "76a914089acaba6af8b2b4fb4bed3b747ab1e4e60b496588ac",
+        //     "satoshis" : 70000
+        //   });
+   
+        // var transaction = new Transaction()
+        //     .from(utxos)          // Feed information about what unspent outputs one can use
+        //     .to(to_address, amount)  // Add an output with the given amount of satoshis
+        //     .change(change_address)      // Sets up a change address where the rest of the funds will go
+        //     .sign(privkeySet)     // Signs all the inputs it can
     }
 
     signBTCMessage(){
@@ -137,7 +145,7 @@ class Wallet extends Component{
         //     .addData('bitcore rocks') // Add OP_RETURN data
         //     .sign(privateKey);    
     }
-    
+
     renderMnemonicPhrase(){
         return (
            <div>
@@ -168,7 +176,7 @@ class Wallet extends Component{
     
     render() {
         return(
-            <div>
+            <div class='wallet'>
                 {/* <div> <h3>Generated Mnemonic: </h3> <br/> {this.generateNewWallet()}</div> */}
                 <button class='generate-mnemonic-button' onClick={this.generateNewWallet}>
                     <p>Click to New Wallet</p>
