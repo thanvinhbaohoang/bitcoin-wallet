@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import WalletStatusBar from "./WalletStatusBar";
 
 class NavBar extends Component {
     render() {
@@ -22,7 +22,7 @@ class NavBar extends Component {
                 </div>
 
                 <div>
-                    Wallet Status Bar
+                    <WalletStatusBar/>
                 </div>
 
 
