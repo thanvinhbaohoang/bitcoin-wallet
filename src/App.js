@@ -5,12 +5,16 @@ import NavBar from './components/NavBar';
 import Receive from './components/Receive';
 import Send from './components/Send';
 import NewWalletPage from './components/NewWalletPage';
+
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        
         <NavBar/>
-        <NewWalletPage/>
+        {/* <NewWalletPage/> */}
+
         {/* <Receive/> */}
         {/* <Send/> */}
       
