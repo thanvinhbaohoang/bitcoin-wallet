@@ -6,7 +6,7 @@ import {FaBook} from 'react-icons/fa';
 
 
 
-class NewWalletPage extends Component {
+class Transactions extends Component {
     render() {
         return (
             <div class='send'>
@@ -15,18 +15,12 @@ class NewWalletPage extends Component {
                     <img class='btc-logo' alt='nologo' src={btc} width="100%"/>
                 </div>
 
-                <p class="title-text">NEW WALLET</p>
+                <p class="title-text">TRANSACTIONS HISTORY</p>
                 
-                <div class="transactions-section">
-                    <div class='transaction'>
-                        
-                    </div>
-                </div>
-              
               
             </div>
         )
     }
 }
 
-export default NewWalletPage;
+export default Transactions;
