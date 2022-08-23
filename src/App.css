@@ -187,6 +187,16 @@ input[type='number']::-webkit-outer-spin-button {
 
 }
 
+.dollar-value {
+  transform: translateY(-20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.small-dollar-sign{
+  color: rgba(255, 255, 255, 0.679);
+  font-size: 12px;
+}
 .address-tools {
   display: flex;
   /* /* align-items: flex-end; */

@@ -55,7 +55,9 @@ class Send extends Component {
                             placeholder="0.000"
                             onChange={this.updateSendAmount}/>         
                 
-                    <p>~${this.state.dollarValue}</p>
+                    <div class='dollar-value'>
+                        <span class='small-dollar-sign'>~$</span><h4>{this.state.dollarValue}</h4>
+                    </div>
                 </div>
 
                 <div class="send-address-container">
