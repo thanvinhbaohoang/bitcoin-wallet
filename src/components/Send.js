@@ -7,6 +7,37 @@ import {FaBook} from 'react-icons/fa';
 
 
 class Send extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            btcSendAmount : 0,
+            dollarValue : 0.00,
+        }
+        this.updateSendAmount = this.updateSendAmount.bind(this);
+        this.setSendAddress = this.setSendAddress.bind(this) 
+ 
+    }
+
+    // Update State and Calculate Dollar Amount
+    updateSendAmount(event){
+        const btcUsdPrice = 23000;
+        console.log(event.target.value*btcUsdPrice)
+        let dollarValue = event.target.value*btcUsdPrice
+
+        // Update State
+        this.setState({
+            btcSendAmount: event.target.value,
+            dollarValue: dollarValue.toFixed(2)
+        })
+    }
+
+    setSendAddress(event){
+        this.setState({
+            sendAddress : event.target.value
+        })
+    }
+
+
     render() {
         return (
             <div class='send'>
@@ -18,8 +49,13 @@ class Send extends Component {
                 <p class="title-text">SEND BTC</p>
                 
                 <div class="send-amount-container">
-                    <h2 class='send-amount-input'> 5000</h2> Sats
-                    <p>~$23000</p>
+                    <input type="number" 
+                            class="send-amount-input" 
+                            id="btcSendAmount"
+                            placeholder="0.000"
+                            onChange={this.updateSendAmount}/>         
+                
+                    <p>~${this.state.dollarValue}</p>
                 </div>
 
                 <div class="send-address-container">
@@ -31,16 +67,16 @@ class Send extends Component {
 
                     <div class='send-address-bar'>
                         <div class='input-bar'>
-                            Tap to paste Address ... 
+                            <input type="street" 
+                            class="form-control" 
+                            id="sendAmount" 
+                            placeholder="Send to this address ... "
+                            onChange={this.setSendAddress}/>         
+                
                             <AiOutlineQrcode class='qr-scan-button'/>
                         </div>
 
-
-                        {/* <input type="street" 
-                            class="form-control" 
-                            id="autocomplete" 
-                            placeholder="Tap to paste address ... "/>          */}
-                    </div>
+                         </div>
 
                     <div class='button'>
                         <h3>Send</h3>

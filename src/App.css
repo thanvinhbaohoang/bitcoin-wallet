@@ -170,10 +170,21 @@ a, a:hover, a:focus, a:active {
 .send-amount-container *{
   margin: 0;
 }
-
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}
 .send-amount-input{
   font-size: 64px;
-  color: var(--btc-yellow)
+  margin: auto;
+  color: var(--btc-yellow);
+  height: 100px;
+  background: none;
+  -webkit-appearance: none;
+  text-align:center;
+
+
 }
 
 .address-tools {
@@ -213,11 +224,16 @@ a, a:hover, a:focus, a:active {
 
 input {
   color: rgba(255, 255, 255, 0.862);
+  background: transparent;
+  border: none;
   border-radius: 10px;
   height: 30px;
+  font-size: 18px;
   padding: 5px 20px;
   background-color: #002130;
+  width: 85%;
 }
+
 
 .send-button{
   width: 110%;
