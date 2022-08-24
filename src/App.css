@@ -25,7 +25,7 @@ button:focus {
 .title-text {
   color: var(--gold);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 1000;
   margin: 20px;
 }
 .secondary-text{
@@ -51,22 +51,28 @@ a, a:hover, a:focus, a:active {
 /* NAVBAR */
 .nav-bar {
   display: flex;
-  padding: 10px;
   justify-content: space-between;
   align-items: center;
   height: 6vh;
   margin-bottom: 100px;
 }
 
+.nav-logo-and-items{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 35%;
+}
 .nav-items {
-  width: 25%;
+  margin: 10px;
+  width: 60%;
   display: flex;
   /* flex-direction: column; */
   justify-content: space-between
 }
 .nav-item {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: bold;
   transition: 0.2s;
   color: rgba(255, 255, 255, 0.627);
   cursor: pointer;
@@ -75,15 +81,45 @@ a, a:hover, a:focus, a:active {
 
 .nav-item:hover{
   transition: 0.1s;
-  transition: 0.2s ease-in-out;
+  transition: 0.1s ease-in;
   color:rgb(255, 255, 255);
-  transform: translateY(-1px);
-  /* text-shadow: 0 0 100px rgb(246, 255, 175); */
   z-index: 999;
 }
 
 
+.wallet-info{
+  width: 320px;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 16px;
 
+}
+
+.wallet-balance{
+  color:var(--gold)
+}
+.current-blockchain{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gradient-background);
+}
+.wallet-pubkey {
+  font-size: 16px;
+}
+
+.profile-picture{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: black;
+
+}
 /* WALLET */
 .wallet{
   display: flex;
@@ -167,6 +203,7 @@ a, a:hover, a:focus, a:active {
   margin-bottom: 50px;
 }
 
+/* Remove the arrows in number input */
 .send-amount-container *{
   margin: 0;
 }
@@ -175,6 +212,19 @@ input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+input {
+  color: rgba(255, 255, 255, 0.862);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  height: 30px;
+  font-size: 18px;
+  padding: 5px 20px;
+  background-color: #002130;
+  width: 85%;
+}
+/* Remove the arrows in number input */
+
 .send-amount-input{
   font-size: 64px;
   margin: auto;
@@ -197,22 +247,27 @@ input[type='number']::-webkit-outer-spin-button {
   color: rgba(255, 255, 255, 0.679);
   font-size: 12px;
 }
-.address-tools {
+.address-book, .qr-scan-button{
   display: flex;
   /* /* align-items: flex-end; */
   justify-content: flex-end; 
   font-weight: 600;
   margin: 5px;
+  color: rgba(255, 255, 255, 0.657)
 }
 
-.address-tools *{
+.address-book *{
   margin-right: 5px;
-
+}
+.address-book:hover, .qr-scan-button:hover {
+  color:white;
+  transition: 0.2s ease;
+  cursor: pointer;
 }
 
 .send-address-bar {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -225,28 +280,18 @@ input[type='number']::-webkit-outer-spin-button {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  margin: 5px;
 }
 
+.input-bar:hover {
+  outline: solid rgba(255, 255, 255, 0.762) 3px;
+  transition: 0.2s ;
+}
 .qr-scan-button {
   font-size: 34px;
-
 }
-
-input {
-  color: rgba(255, 255, 255, 0.862);
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  height: 30px;
-  font-size: 18px;
-  padding: 5px 20px;
-  background-color: #002130;
-  width: 85%;
-}
-
 
 .send-button{
-  width: 110%;
 }
 
 .connect-wallet-button {

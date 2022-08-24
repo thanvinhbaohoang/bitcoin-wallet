@@ -53,6 +53,8 @@ class Send extends Component {
                             class="send-amount-input" 
                             id="btcSendAmount"
                             placeholder="0.000"
+                            min="0"
+                            defaultValue={0}
                             onChange={this.updateSendAmount}/>         
                 
                     <div class='dollar-value'>
@@ -62,7 +64,7 @@ class Send extends Component {
 
                 <div class="send-address-container">
 
-                    <div class='address-tools'>
+                    <div class='address-book'>
                         <FaBook/> 
                         Address Book
                     </div>

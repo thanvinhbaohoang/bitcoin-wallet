@@ -11,29 +11,25 @@ class NavBar extends Component {
         return (
             <BrowserRouter>
                 <nav class='nav-bar'>
-                    <a class='nav-logo' href='#hero'>
-                        <h1>Spectre Wallet</h1>
+                    <a class='nav-logo-and-items' href='#hero'>
+                        {/* <h1>Spectre Wallet</h1> */}
+                        <div class='profile-picture'></div>
+                        <div class='nav-items'>
+                                <NavLink to ="/send"> 
+                                    <p class='nav-item'> Send </p>
+                                </NavLink>
+
+                                <NavLink to ="/receive"> 
+                                    <p class='nav-item'> Receive </p>
+                                </NavLink>
+
+                                <NavLink to ="/transactions"> 
+                                    <p class='nav-item'> Transactions </p>
+                                </NavLink>
+                    </div>
                     </a>
 
-                    <div class='nav-items'>
-                        <div> 
-                            <NavLink to ="/send"> 
-                                <p class='nav-item'> Send </p>
-                            </NavLink>
-                        </div>
-
-                        <div> 
-                            <NavLink to ="/receive"> 
-                                <p class='nav-item'> Receive </p>
-                            </NavLink>
-                        </div>
-
-                        <div> 
-                            <NavLink to ="/transactions"> 
-                                <p class='nav-item'> Transactions </p>
-                            </NavLink>
-                        </div>
-                    </div>
+                    
 
                     <div>
                         <WalletStatusBar/>
