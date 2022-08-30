@@ -179,7 +179,7 @@ class Wallet extends Component{
             <div class='wallet'>
                 {/* <div> <h3>Generated Mnemonic: </h3> <br/> {this.generateNewWallet()}</div> */}
                 <button class='generate-mnemonic-button' onClick={this.generateNewWallet}>
-                    <p>Click to New Wallet</p>
+                    <p>Generate New Wallet</p>
                 </button>
 
                 {this.renderMnemonicPhrase()}

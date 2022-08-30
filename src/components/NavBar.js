@@ -15,6 +15,9 @@ class NavBar extends Component {
                         {/* <h1>Spectre Wallet</h1> */}
                         <div class='profile-picture'></div>
                         <div class='nav-items'>
+                                <NavLink to ="/new"> 
+                                    <p class='nav-item'> New Wallet </p>
+                                </NavLink>
                                 <NavLink to ="/send"> 
                                     <p class='nav-item'> Send </p>
                                 </NavLink>

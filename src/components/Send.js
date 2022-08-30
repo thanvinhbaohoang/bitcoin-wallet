@@ -37,6 +37,10 @@ class Send extends Component {
         })
     }
 
+    isValidAddress(inputAddress){
+        
+    }
+
 
     render() {
         return (
