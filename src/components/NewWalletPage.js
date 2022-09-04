@@ -78,7 +78,7 @@ class NewWalletPage extends Component {
 
             <div class='button' 
             toggleState={isChecked}
-            onClick={this.generateNewWallet} 
+            onClick={handleClick} 
             >
                 <h3>Start Using My New Wallet</h3>
             </div>
@@ -104,17 +104,29 @@ class NewWalletPage extends Component {
             {id: 11, word: 'Carl'},
             {id: 12, word: 'Dean'},
           ];
-        
+
+          this.state.mnemonicArray.map((currElement, index) => {
+            return (
+                <div key={index} class='seed-item'>
+                    <p class='seed-number'>{index}</p>
+                    <h2 class='seed-word'>{currElement}</h2>        
+                </div>
+                );
+          });
+
           return (
             <div class="seed-container">
-                {seedWords.map(item => {
-                    return (
-                    <div key={item.id} class='seed-item'>
-                        <p class='seed-number'>{item.id}</p>
-                        <h2 class='seed-word'>{item.word}</h2>        
-                    </div>
-                    );
-                })}
+                {
+                    this.state.mnemonicArray.map((currElement, index) => {
+                        return (
+                            <div key={index} class='seed-item'>
+                                <p class='seed-number'>{index+1}</p>
+                                <h2 class='seed-word'>{currElement}</h2>        
+                            </div>
+                            );
+                      })
+                
+                }
             </div>
           );
     }
