@@ -1,19 +1,95 @@
-import React, { Component } from "react";
+import React, { Component, useState, useRef} from "react";
 import btc from '../images/btc-logo.svg';
 import { TiWarningOutline } from 'react-icons/ti';
+
+
+
+const bitcore = require('bitcore-lib');
 
 class NewWalletPage extends Component {
     constructor(props){
         super(props);
-        this.state={
-            seedWords : ["one", "two", "three", "four", "fiv" , "six", 
-            "sev", "eight", "nine", "ten", "elev", "tewlse"]
-        }
 
-       this.renderSeedPhrase= this.renderSeedPhrase.bind(this)
+        this.generateNewWallet = this.generateNewWallet.bind(this) 
+        this.renderSeedPhrase= this.renderSeedPhrase.bind(this)
+        this.state = {
+            mnemonicArray : []
+        }
     }
 
+    componentDidMount(){
+        console.log("componentDidMount")
+        this.generateNewWallet()
+    }
+
+    generateNewWallet(){ 
+        // Generate Mnemonic Phrase
+        const Mnemonic = require('bitcore-mnemonic');
+        const code = new Mnemonic(Mnemonic.Words.ENGLISH);
+        const newMnemonicPhrase = code.toString(); //12 words mnemonic phrases
+        var xpriv = code.toHDPrivateKey(); //Extended Private Key (Used to create PrivateKeys and PubKeys)
+
+        // Generate Address from XPriv
+        var value = Buffer.from(newMnemonicPhrase);
+        var hash = bitcore.crypto.Hash.sha256(value);
+        var bn = bitcore.crypto.BN.fromBuffer(hash);
+        var privateKey = new bitcore.PrivateKey(bn);
+        var publicKey = privateKey.toPublicKey();
+
+        // Multiple Ways To Generate Address
+        // var address = privateKey.toAddress(); [We Can use This but not recommended for security]
+        var address= publicKey.toAddress();
+        address = address.toString()
+        const mnemonicArray = newMnemonicPhrase.split(' ');
+
+
+        // Update State
+        this.setState({
+            mnemonicArray: mnemonicArray,
+            mnemonicPhrase : newMnemonicPhrase,
+            xpriv: xpriv.toString(),
+            privateKey: privateKey.toString(),
+            publicKey: publicKey.toString(),
+            walletAddress: address.toString(),
+        })
+
+    }
+
+    // Checkbox for Confirmation of Writing down and securing seed
+    Checkbox = ({ label, onChange }) => {
+        const [isChecked, setChecked] = useState(true);
+
+        const handleChange = () => {
+            // Function
+            setChecked(!isChecked);
+            console.log("isChecked: ", isChecked);
+        }
+
+        
+        const handleClick = () => {
+            console.log(!isChecked)
+            this.disabled = true;
+        }
+        
+
+        return (
+        <div>
+
+
+            <div class='button' 
+            toggleState={isChecked}
+            onClick={this.generateNewWallet} 
+            >
+                <h3>Start Using My New Wallet</h3>
+            </div>
+        </div>
+        );
+    };
+
+
     renderSeedPhrase(){
+
+        
         const seedWords = [
             {id: 1, word: 'Alice'},
             {id: 2, word: 'Bob'},
@@ -44,6 +120,7 @@ class NewWalletPage extends Component {
     }
 
 
+
     render() {
         return (
             <div class='send'>
@@ -55,7 +132,7 @@ class NewWalletPage extends Component {
                 <h2>Your Mnemonic Seed Phrase</h2>
 
                 <div class="seed-phrase-wrapper">
-                 {this.renderSeedPhrase()}
+                    {this.renderSeedPhrase()}
                 </div>
               
                 <div class='seed-warning'>
@@ -63,11 +140,10 @@ class NewWalletPage extends Component {
                 </div>
 
                 <div class = 'seed-checkbox-container'>
-                    I have written this seed down and kept it in a secure area                
+                    <this.Checkbox class='checkbox'/>
                 </div>
-                <div class='button'>
-                        <h3>Start Using My New Wallet</h3>
-                </div>
+                
+                {/* <this.ContinueButton boxChecked={this.Checkbox.boxCheckedStatus}/> */}
             </div>
         )
     }

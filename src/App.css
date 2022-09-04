@@ -353,4 +353,13 @@ input {
 
 .seed-checkbox-container{
   margin: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow:visible;
+}
+
+/* For checkbox */
+input{
 }
